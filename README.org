@@ -1,13 +1,38 @@
 * shadow-cljs-isomorphic-clj
 
-A Leiningen template for a clojure-only webapp, stripped-down from luminus
+A Leiningen template for a clojure-only webapp, stripped-down from [[https://github.com/luminus-framework/luminus-template][luminus]].
 
-- server-side html with hiccup
-- client-side html with reagent
-- css with stylefy/garden
-- automatic dom id generate based on shadow-cljs configuration
+- server-side html with [[https://github.com/weavejester/hiccup][hiccup]]
+- client-side html with [[https://reagent-project.github.io/][reagent]]
+- css with [[https://github.com/Jarzka/stylefy][stylefy]]/[[https://github.com/noprompt/garden][garden]]
+- automatic dom id generate based on [[https://leiningen.org/][leiningen]] + [[https://github.com/thheller/shadow-cljs][shadow-cljs]] configuration
+- [[https://github.com/metosin/reitit][reitit]] for routing when applicable
 
-** initial setup
+** design considerations
+
+   you should be able to write your entire application completely in
+   clojure: backend, frontend, styling, transport, /all clojure/
+   
+   dependencies are specified as plain edn (maps or vectors) that are
+   =slurp=-ed in =project.clj=. I actually find the vanilla
+   =project.clj= method of dependency specification to be very
+   difficult to compose, if several projects happen in parallel; one
+   reason is that that edn structures are locked inside of the
+   =defproject= macro.
+
+   in my experience, =lein shadow= as provided by luminus is a good
+   way to have the features of lein /and/ shadow-cljs. The initial
+   setup can get pretty nasty, but works very well afterwards.
+
+   reduce hand-specification of e.g. output js by parsing
+   =project.clj= for relevant details.
+
+   use [[https://github.com/mhuebert/shadow-env][shadow-env]] to propagate project-level configuration to both clj
+   and cljs outputs.
+
+** setup record
+
+template structure was initialized with
 
 #+BEGIN_SRC sh :eval never
 lein new template shadow-cljs-isomorphic-clj
