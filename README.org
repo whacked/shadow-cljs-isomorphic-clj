@@ -1,0 +1,29 @@
+* shadow-cljs-isomorphic-clj
+
+A Leiningen template for a clojure-only webapp, stripped-down from luminus
+
+- server-side html with hiccup
+- client-side html with reagent
+- css with stylefy/garden
+- automatic dom id generate based on shadow-cljs configuration
+
+** initial setup
+
+#+BEGIN_SRC sh :eval never
+lein new template shadow-cljs-isomorphic-clj
+#+END_SRC
+
+* testing / usage
+
+#+BEGIN_SRC sh :eval never
+lein new shadow-cljs-isomorphic-clj testproject
+cd testproject
+nix-shell
+# then launch the server and/or cljs build process
+# launch browser
+#+END_SRC
+
+* references
+
+  - https://medium.com/@bansaridesai/writing-lein-template-quick-tutorial-f89b463e66a3 (thank you!)
+  - https://github.com/luminus-framework/luminus-template
